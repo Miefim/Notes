@@ -1,0 +1,22 @@
+.textarea {
+   width: 74.8%;
+   height: 100%;
+   box-sizing: border-box;
+   padding: 50px;
+   resize: none;
+   border: none;
+   background-color: #1e1e1e;
+   outline: none;
+   color: #ffffff;
+   scroll-behavior: inherit;
+}
+
+.textarea::-webkit-scrollbar {
+   background-color: rgba(0, 0, 0, 0);
+   width: 5px;
+}
+
+.textarea::-webkit-scrollbar-thumb {
+   background-color: #b1b1b1;
+   border-radius: 10px;
+}

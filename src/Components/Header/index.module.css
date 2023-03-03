@@ -1,0 +1,58 @@
+.header {
+   width: 100%;
+
+   background-color: #2e2f35;
+   display: flex;
+   align-items: center;
+   box-sizing: border-box;
+}
+
+.headerLeft {
+   width: 25%;
+   display: flex;
+   justify-content: space-between;
+}
+
+.btnIcon {
+   color: #b1b1b1;
+}
+
+.btnGroupL {
+   display: flex;
+   width: 100px;
+   justify-content: space-between;
+   margin-left: 10px;
+}
+
+.separateLine {
+   height: 50%;
+   width: 1px;
+   background-color: #b1b1b1;
+   margin: 0 5px;
+   z-index: 10;
+}
+
+.headerRight {
+   display: flex;
+   justify-content: space-between;
+   width: 75%;
+}
+
+.btnGroupR {
+   display: flex;
+   width: 100px;
+   justify-content: space-between;  
+}
+
+.input {
+   margin-right: 20px;
+}
+
+.activeButtonType {
+   background-color: rgba(0, 0, 0, .5);
+}
+
+.activeSeparateLine {
+   height: 3000%;
+   background-color: #000000;
+}

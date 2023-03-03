@@ -1,0 +1,18 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  height: 100vh;
+  margin: auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.header {
+  height: 9%;
+}
+
+.content {
+  display: flex;
+  height: 91%;
+}
