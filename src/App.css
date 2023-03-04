@@ -16,3 +16,15 @@
   display: flex;
   height: 91%;
 }
+
+.textareaBig {
+  width: 100%;
+}
+
+.active {
+  display: flex;
+}
+
+.noActive {
+  display: none;
+}
