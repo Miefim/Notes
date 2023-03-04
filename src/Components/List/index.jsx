@@ -1,34 +1,41 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+
+import { MyContext } from '../../App'
+import { useLocalStorage } from '../../hooks/useLocalStorage'
 import style from './index.module.css'
 
-const List = () => {
-   const [items, setItems] = useState([])
+const List = ({className}) => {
+   const {setSelectedItem, selectedItem} = useContext(MyContext)
+   const [ , items, , , get] = useLocalStorage()
 
-   useEffect(() => {
-      for(let key in localStorage){
-         if(localStorage.hasOwnProperty(key)){
-            setItems(items => [...items, localStorage[key]])
-         } 
-      }
-   },[localStorage])
-   
+   const setSelectedItemObj = (e) => {
+      e.stopPropagation()
+      setSelectedItem(get(Number(e.currentTarget.id)))
+   }
+
    return (
-      <div className={style.list}>
+      <div className={[style.list, className].join(' ')} onClick={() => setSelectedItem(0)}>
          <div className={style.date}>
             Сегодня
          </div>
-         {
-            items.map((item, i) => 
-               <div className={style.item} key={i}>
-                  <h2 className={style.itemTitle}>Title</h2>
-                  <div className={style.itemText}>
-                     <p className={style.time}>17:50</p> 
-                     Нет дополнительного текста
+         {  localStorage.length === 0 
+            ?  <div className={style.info}>Заметок нет</div> 
+            :
+               items.map((item) =>
+                  <div 
+                     className={item.id === selectedItem.id ? [style.item, style.itemActive].join(' ') : style.item} 
+                     key={item.id} 
+                     id={item.id} 
+                     onClick={setSelectedItemObj}
+                  >
+                     <h2 className={style.itemTitle}>{item.text.split(' ')[0] ? item.text.split(' ')[0] : "Без названия"}</h2>
+                     <div className={style.itemText}>
+                        <p className={style.time}>{item.date.split(' ')[4]}</p> 
+                        {item.text ? item.text : 'Нет дополнительного текста'}
+                     </div>
                   </div>
-               </div>
-            )
-         }
-         
+               )
+         } 
       </div>
    )
 }

@@ -1,5 +1,5 @@
 .list {
-   display: flex;
+   display: none;
    flex-direction: column;
    width: 25.2%;
    height: 100%;
@@ -21,29 +21,27 @@
    flex-direction: column;
    box-sizing: border-box;
    width: 95%;
-   height: 72px;
+   min-height: 72px;
    margin: 0 auto;
    transition: .3s;
    border-radius: 10px;
    cursor: pointer;
+   color: #b1b1b1;
 }
 
 .item:hover {
-   background-color: rgba(255, 255, 255, .5);
+   background-color: rgba(255, 255, 255, .3);
 }
 
-.item:not(:hover):after {
-   content: '';
-   width: 200px;
-   height: 75px;
-   border-bottom: 1px solid #b1b1b1;
-   position: absolute;
-   margin-left: 30px;
+.itemActive {
+   background-color: rgba(255, 255, 255, .2);
 }
 
 .itemTitle {
    margin: 0 0 0 30px;
    font-size: 15px;
+   width: 192px;
+   overflow: hidden;
 }
 
 .time {
@@ -57,4 +55,24 @@
    height: 13px;
    overflow: hidden;
    margin-left: 30px;
+}
+
+.list::-webkit-scrollbar {
+   background-color: rgba(0, 0, 0, 0);
+   width: 5px;
+}
+
+.list::-webkit-scrollbar-thumb {
+   background-color: #b1b1b1;
+   border-radius: 10px;
+}
+
+.info {
+   display: flex;
+   color: #b1b1b1;
+   width: 100%;
+   font-size: 20px;
+   height: 100%;
+   justify-content: center;
+   align-items: center;
 }

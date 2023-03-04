@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Search } from '@mui/icons-material'
 import style from './index.module.css'
 
-const Input = ({placeholder, className, value, setValue}) => {
+const Input = ({placeholder, className, value, setValue, ...props}) => {
    return(
       <div className={style.root}>
          <input 
@@ -11,6 +11,7 @@ const Input = ({placeholder, className, value, setValue}) => {
             type="text" placeholder={placeholder} 
             onChange={setValue}
             value={value}
+            {...props}
          />
          <Search className={style.icon} fontSize='small'/>
       </div>
