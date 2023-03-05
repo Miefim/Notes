@@ -26,6 +26,7 @@
    border: 1px solid #b1b1b1;
    padding: 10px;
    transition: .3s;
+   overflow: hidden;
 }
 
 .winActive {

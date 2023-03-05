@@ -4,6 +4,10 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Btn from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
+import FormatBoldIcon from '@mui/icons-material/FormatBold';
+import FormatItalicIcon from '@mui/icons-material/FormatItalic';
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import FormatSizeIcon from '@mui/icons-material/FormatSize';
 
 import { MyContext } from '../../App'
 import { useLocalStorage } from '../../hooks/useLocalStorage'
@@ -16,9 +20,17 @@ const Header = ({className}) => {
    const {type, setType, setTriggerGetLocalStorage, triggerGetLocalStorage, setSelectedItem, selectedItem} = useContext(MyContext)
    const [response, _, set, del] = useLocalStorage()
    const [modalVisible, setModalVisible] = useState(false)
+   const [activeFormatTextBtn, setActiveFormatTextBtn] = useState(false)
+
+   useEffect(() => {
+      if(selectedItem === 0 || type === 1){
+         setActiveFormatTextBtn(false)
+      }
+   },[selectedItem, type])
 
    const obj = {
       text: '',
+      innerHTML: '',
       sortDate: new Date(),
       date: new Intl.DateTimeFormat("ru", {
                day: "numeric", 
@@ -90,12 +102,69 @@ const Header = ({className}) => {
                >
                   <ModeEdit fontSize='small' className={style.btnIcon}/>
                </Button>
-               <Button>
+               <Button 
+                  className={activeFormatTextBtn ? [style.textFormatBtn, style.activeButtonType].join(' ') : style.textFormatBtn} 
+                  disabled={selectedItem === 0 || type === 1}
+                  onClick={() => setActiveFormatTextBtn(!activeFormatTextBtn)}
+               >
                   <TextFormat 
                      fontSize='medium' 
                      className={style.btnIcon}
                   />
                </Button>
+               <div className={style.formatBtnGroupWin}>
+                  <div className={`${style.textFormatBtnGroup} ${activeFormatTextBtn && style.textFormatBtnGroupActive}`}>
+                     <Button className={style.fontSizeBtn}>
+                        <FormatSizeIcon 
+                           fontSize='medium' 
+                           className={style.btnIcon}
+                        />
+                        <div className={style.fontSizeBtnPopap}>
+                           <Button className={style.popapBtn} onClick={() => document.execCommand('fontSize', false, '1')}>1</Button>
+                           <Button className={style.popapBtn} onClick={() => document.execCommand('fontSize', false, '2')}>2</Button>
+                           <Button className={style.popapBtn} onClick={() => document.execCommand('fontSize', false, '3')}>3</Button>
+                           <Button className={style.popapBtn} onClick={() => document.execCommand('fontSize', false, '4')}>4</Button>
+                           <Button className={style.popapBtn} onClick={() => document.execCommand('fontSize', false, '5')}>5</Button>
+                           <Button className={style.popapBtn} onClick={() => document.execCommand('fontSize', false, '6')}>6</Button>
+                           <Button className={style.popapBtn} onClick={() => document.execCommand('fontSize', false, '7')}>7</Button>
+                        </div>
+                     </Button>
+                     <div style={{display:'flex'}}>
+                        <Button onClick={() => document.execCommand('bold')}>
+                           <FormatBoldIcon 
+                              fontSize='medium' 
+                              className={style.btnIcon}
+                           />
+                        </Button>
+                        <Button onClick={() => document.execCommand('italic')}>
+                           <FormatItalicIcon 
+                              fontSize='medium' 
+                              className={style.btnIcon}
+                           />
+                        </Button>
+                        <Button onClick={() => document.execCommand('underline')}>
+                           <TextFormat 
+                              fontSize='medium' 
+                              className={style.btnIcon}
+                           />
+                        </Button>
+                     </div>
+                     <div style={{display:'flex'}}>
+                        <Button onClick={() => document.execCommand('insertOrderedList')}>
+                           <FormatListNumberedIcon 
+                              fontSize='medium' 
+                              className={style.btnIcon}
+                           />
+                        </Button>
+                        <Button onClick={() => document.execCommand('insertUnorderedList')}>
+                           <FormatListBulleted 
+                              fontSize='medium' 
+                              className={style.btnIcon}
+                           />
+                        </Button>
+                     </div>
+                  </div>
+               </div>
             </div>
             <Search 
                disabled={type === 2 || localStorage.length === 0} 

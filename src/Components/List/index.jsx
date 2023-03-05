@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 
 import { MyContext } from '../../App'
 import { useLocalStorage } from '../../hooks/useLocalStorage'
