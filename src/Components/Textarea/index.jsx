@@ -6,7 +6,7 @@ import style from './index.module.css'
 
 const Textarea = ({className}) => {
    const {selectedItem, setTriggerGetLocalStorage, triggerGetLocalStorage} = useContext(MyContext)
-   const [response, localStore, set, del, get, change] = useLocalStorage()
+   const [, , , , , change] = useLocalStorage()
    const [value, setValue] = useState('')
 
    useEffect(() => {

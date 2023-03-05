@@ -2,16 +2,18 @@
    position: relative;
    display: flex;
    align-items: center;
+   width: 100%;
 }
 
 .input {
    background-color: rgba(0, 0, 0, 0);
    border: 1px solid #b1b1b1;
    border-radius: 5px;
-   padding: 0 0 0 30px;
+   padding: 0 30px 0 30px;
    color: #b1b1b1;
    height: 25px;
    outline: none;
+   width: 100%;
 }
 
 input:disabled {
@@ -27,6 +29,17 @@ input:disabled {
    color: #b1b1b1;
    position: absolute;
    left: 3px;
+}
+
+.iconClose {
+   color: #b1b1b1;
+   position: absolute;
+   right: 3px;
+   cursor: pointer; 
+}
+
+.iconClose:hover {
+   color: #ffffff;
 }
 
 .input:focus {

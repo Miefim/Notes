@@ -5,19 +5,26 @@ import { useLocalStorage } from '../../hooks/useLocalStorage'
 import style from './index.module.css'
 
 const GridList = ({className}) => {
-   const {setSelectedItem, selectedItem, setType} = useContext(MyContext)
+   const {setSelectedItem, selectedItem, setType, filterItems} = useContext(MyContext)
    const [ , items, , , get] = useLocalStorage()
+
+   const arr = filterItems ? filterItems : items
 
    const setSelectedItemObj = (e) => {
       e.stopPropagation()
       setSelectedItem(get(Number(e.currentTarget.id)))
    }
+   
    return(
-      <div className={[style.gridList, className].join(' ')} onClick={() => setSelectedItem(0)}>
-         {  localStorage.length === 0
+      <div 
+         className={[style.gridList, className].join(' ')} 
+         onClick={() => setSelectedItem(0)}
+      >
+         {filterItems?.length === 0 && <div className={style.info}>Заметок не найдено</div>}
+         {  
+            localStorage.length === 0
             ?  <div className={style.info}>Заметок нет</div>
-            :
-               items.map(item => 
+            :  arr.map(item => 
                   <div 
                      className={style.unit} 
                      id={item.id} 

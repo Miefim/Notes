@@ -2,7 +2,12 @@ import style from './index.module.css'
 
 const Button = ({children, className, ...props}) => {
    return(
-      <button {...props} className={[style.btn, className].join(' ')}>{children}</button>
+      <button 
+         {...props} 
+         className={[style.btn, className].join(' ')}
+      >
+         {children}
+      </button>
    )
 }
 

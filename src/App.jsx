@@ -12,10 +12,11 @@ function App() {
   const [type, setType] = useState(0)
   const [triggerGetLocalStorage, setTriggerGetLocalStorage] = useState(false)
   const [selectedItem, setSelectedItem] = useState(0)
+  const [filterItems, setFilterItems] = useState(null)
 
   return (
     <div className="App">
-      <MyContext.Provider value={{type, setType, triggerGetLocalStorage, setTriggerGetLocalStorage, selectedItem, setSelectedItem}}>
+      <MyContext.Provider value={{type, setType, triggerGetLocalStorage, setTriggerGetLocalStorage, selectedItem, setSelectedItem, setFilterItems, filterItems}}>
         <Header className='header'/>
         <div className='content'>
           <List className={type === 0 && 'active'}/>

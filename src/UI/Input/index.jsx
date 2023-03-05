@@ -1,19 +1,22 @@
-import { useState } from 'react'
-
 import { Search } from '@mui/icons-material'
+import CloseIcon from '@mui/icons-material/Close';
 import style from './index.module.css'
 
 const Input = ({placeholder, className, value, setValue, ...props}) => {
    return(
-      <div className={style.root}>
+      <div className={[style.root, className].join(' ')}>
          <input 
-            className={[style.input, className].join(' ')} 
+            className={style.input} 
             type="text" placeholder={placeholder} 
-            onChange={setValue}
+            onChange={(e) => setValue(e.target.value)}
             value={value}
             {...props}
          />
-         <Search className={style.icon} fontSize='small'/>
+         <Search 
+            className={style.icon} 
+            fontSize='small'
+         />
+         {value && <CloseIcon className={style.iconClose} fontSize='small' onClick={() => setValue('')}/>}
       </div>
       
    )
