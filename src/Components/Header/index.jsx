@@ -7,7 +7,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 import { MyContext } from '../../App'
 import { useLocalStorage } from '../../hooks/useLocalStorage'
-import Input from '../../UI/Input'
+import Search from '../Search';
 import Button from '../../UI/Button'
 import style from './index.module.css'
 
@@ -27,7 +27,6 @@ const Header = ({className}) => {
                minute: "numeric",
                hour: "numeric"
             }).format(new Date()).replace(/(\s?\г\.?)/, "")
-
    }
 
    const addNotes = () => {
@@ -55,7 +54,7 @@ const Header = ({className}) => {
       bgcolor: 'background.paper',
       boxShadow: 24,
       p: 4,
-    };
+   }
 
    return (
       <div className={[style.header, className].join(' ')}>
@@ -75,15 +74,34 @@ const Header = ({className}) => {
                </Button>
                {type === 2 && <Button onClick={() => setType(1)}><ArrowBackIosNew className={style.btnIcon}/></Button>}
             </div>
-            <Button disabled={!selectedItem || type === 2} onClick={() => setModalVisible(true)}><Delete className={style.btnIcon}/></Button>
+            <Button 
+               disabled={!selectedItem || type === 2} 
+               onClick={() => setModalVisible(true)}
+            >
+               <Delete className={style.btnIcon}/>
+            </Button>
          </div>
          <div className={type === 0 ? [style.separateLine, style.activeSeparateLine].join(' ') : style.separateLine}></div>
          <div className={style.headerRight}>
             <div className={style.btnGroupR}>
-               <Button disabled={type === 2} onClick={addNotes}><ModeEdit fontSize='small' className={style.btnIcon}/></Button>
-               <Button><TextFormat fontSize='medium' className={style.btnIcon} /></Button>
+               <Button 
+                  disabled={type === 2} 
+                  onClick={addNotes}
+               >
+                  <ModeEdit fontSize='small' className={style.btnIcon}/>
+               </Button>
+               <Button>
+                  <TextFormat 
+                     fontSize='medium' 
+                     className={style.btnIcon}
+                  />
+               </Button>
             </div>
-            <Input disabled={type === 2} placeholder='Поиск' className={style.input}/>
+            <Search 
+               disabled={type === 2 || localStorage.length === 0} 
+               placeholder='Поиск' 
+               className={type === 2 || localStorage.length === 0 ? [style.input, style.inputDisabled].join(' ') : style.input}
+            />
          </div>
          <Modal
             open={modalVisible}
@@ -95,10 +113,18 @@ const Header = ({className}) => {
                <div className={style.warningBlock}>
                   Удалить заметку?
                   <div className={style.modalBtnGroup}>
-                     <Btn variant="outlined" startIcon={<DeleteIcon />} color="error" onClick={deleteNotes}>
+                     <Btn 
+                        variant="outlined" 
+                        startIcon={<DeleteIcon />} 
+                        color="error" 
+                        onClick={deleteNotes}
+                     >
                         Удалить
                      </Btn>
-                     <Btn variant="outlined" onClick={() => setModalVisible(false)}>
+                     <Btn 
+                        variant="outlined" 
+                        onClick={() => setModalVisible(false)}
+                     >
                         Нет
                      </Btn>
                   </div>

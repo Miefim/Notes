@@ -44,6 +44,12 @@
 
 .input {
    margin-right: 20px;
+   width: 200px;
+   transition: .3s;
+}
+
+.inputDisabled {
+   width: 20px;
 }
 
 .activeButtonType {
