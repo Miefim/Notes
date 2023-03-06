@@ -17,10 +17,8 @@ const Header = ({className}) => {
    const [activeFormatTextBtn, setActiveFormatTextBtn] = useState(false)
 
    useEffect(() => {
-      if(selectedItem === 0 || type === 1){
-         setActiveFormatTextBtn(false)
-      }
-   },[selectedItem, type])
+      setActiveFormatTextBtn(false)
+   },[type])
 
    const obj = {
       text: '',
@@ -67,7 +65,7 @@ const Header = ({className}) => {
          <div className={style.headerLeft}>
             <div className={style.btnGroupL}>
                <Button 
-                  className={type === 0 && style.activeButtonType}
+                  className={type === 0 || type === 3 ? style.activeButtonType : ''}
                   onClick={() => setType(0)}
                >
                   <FormatListBulleted className={style.btnIcon}/>
@@ -98,7 +96,7 @@ const Header = ({className}) => {
                </Button>
                <Button 
                   className={activeFormatTextBtn ? [style.textFormatBtn, style.activeButtonType].join(' ') : style.textFormatBtn} 
-                  disabled={selectedItem === 0 || type === 1}
+                  disabled={selectedItem === 0 || type === 1 || type === 0 && window.screen.availWidth < 1000}
                   onClick={() => setActiveFormatTextBtn(!activeFormatTextBtn)}
                >
                   <TextFormat 
@@ -163,9 +161,9 @@ const Header = ({className}) => {
                </div>
             </div>
             <Search 
-               disabled={type === 2 || localStorage.length === 0} 
+               disabled={type === 2 || type === 3 || localStorage.length === 0} 
                placeholder='Поиск' 
-               className={type === 2 || localStorage.length === 0 ? [style.input, style.inputDisabled].join(' ') : style.input}
+               className={type === 2 || type === 3 || localStorage.length === 0 ? [style.input, style.inputDisabled].join(' ') : style.input}
             />
          </div>
          <Modal

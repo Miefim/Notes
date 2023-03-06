@@ -18,8 +18,8 @@ function App() {
     <div className="App">
       <MyContext.Provider value={{type, setType, triggerGetLocalStorage, setTriggerGetLocalStorage, selectedItem, setSelectedItem, setFilterItems, filterItems}}>
         <Header className='header'/>
-        <div className='content'>
-          <List className={type === 0 && 'active'}/>
+        <div style={type === 1 || type === 2 ? {width: '100%'} : {}} className={`content ${type === 3 && 'collapseList'}`}>
+          <List className={type === 0 || type === 3 ? 'active' : ''}/>
           <Textarea className={type === 1 ? 'noActive' : type === 2 ? 'textareaBig' : ''}/>
           <GridList className={type === 1 && 'active'}/>
         </div>

@@ -10,12 +10,17 @@
 }
 
 .header {
-  height: 9%;
+  min-height: 9%;
 }
 
 .content {
   display: flex;
-  height: 91%;
+  min-height: 91%;
+  transition: .3s;
+}
+
+.collapseList {
+  transform: translateX(-200px);
 }
 
 .textareaBig {
@@ -35,6 +40,10 @@
   .App {
     width: 100vw;
     height: 100vh;
+  }
+
+  .content {
+    width: calc(100% + 200px);
   }
 
 }
