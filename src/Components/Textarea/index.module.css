@@ -1,7 +1,7 @@
 .root {
-   width: 74.8%;
+   width: calc(100% - 252px);
    height: 100%;
-   position: relative;
+   position: relative; 
 }
 
 .textarea {
@@ -40,4 +40,24 @@
    font-size: 12px;
    top: 20px;
    left: 40%;
+}
+
+@media screen and (max-width: 1000px) {
+
+   .textareaDisabledIcon {
+      left: 35%;
+   }
+ 
+}
+
+@media screen and (max-width: 500px) {
+
+   .textareaDisabledIcon {
+      left: 25%;
+   }
+
+   .date {
+      left: 33%;
+   }
+ 
 }

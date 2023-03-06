@@ -1,7 +1,7 @@
 .list {
    display: none;
    flex-direction: column;
-   min-width: 25.2%;
+   min-width: 252px;
    height: 100%;
    background-color: #2e2f35;
    overflow: auto;
@@ -78,3 +78,27 @@
    justify-content: center;
    align-items: center;
 }
+
+.collapseBtn {
+   display: none;
+   position: absolute;
+   top: 0;
+   right: 0;
+   height: 100%;
+   width: 47px;
+}
+
+.collapseBtnActive {
+   transform: rotate(180deg);
+}
+
+@media screen and (max-width: 1000px) {
+
+   .collapseBtn {
+      display: flex;
+      position: fixed;
+      left: 204px
+   }
+ 
+}
+

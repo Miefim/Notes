@@ -5,7 +5,7 @@ import { MyContext } from '../../App'
 import style from './index.module.css'
 
 const Textarea = ({className}) => {
-   const {selectedItem, setTriggerGetLocalStorage, triggerGetLocalStorage} = useContext(MyContext)
+   const {selectedItem, setTriggerGetLocalStorage, triggerGetLocalStorage, type, setType} = useContext(MyContext)
    const [, , , , , change] = useLocalStorage()
    const [text, setText] = useState('')
    const [innerHTML, setInnerHTML] = useState('')
@@ -33,8 +33,14 @@ const Textarea = ({className}) => {
       setInnerHTML(e.currentTarget.innerHTML)
    }
 
+   const handleTouchTextarea = () => {
+      if(window.screen.availWidth < 1000 && type === 0 && selectedItem !== 0){
+         setType(3)
+      }
+   }
+
    return(
-      <div className={[style.root, className].join(' ')}>
+      <div className={[style.root, className].join(' ')} onTouchStart={handleTouchTextarea}>
          {selectedItem === 0 && <img className={style.textareaDisabledIcon} src="/images/EditIcon.svg" alt="" />}
          {selectedItem ? <p className={style.date}>{selectedItem.date}</p> : ''}
          <div 
