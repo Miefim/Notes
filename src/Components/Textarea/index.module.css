@@ -9,19 +9,18 @@
    height: 100%;
    box-sizing: border-box;
    padding: 50px;
-   resize: none;
-   border: none;
    background-color: #1e1e1e;
-   outline: none;
    color: #ffffff;
-   scroll-behavior: inherit;
+   overflow: auto;
+   outline: none;
+   color: #b1b1b1;
 }
 
-.textarea:disabled {
-   background-image: url('/public/images/EditIcon.svg');
-   background-repeat: no-repeat;
-   background-position: center;
-   background-size: 150px;
+.textareaDisabledIcon {
+   position: absolute;
+   top: 35%;
+   left: 40%;
+   width: 200px;
 }
 
 .textarea::-webkit-scrollbar {

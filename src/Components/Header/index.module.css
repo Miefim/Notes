@@ -40,6 +40,30 @@
    display: flex;
    width: 100px;
    justify-content: space-between;  
+   position: relative;
+}
+
+.textFormatBtnGroup {
+   position: relative;
+   width: 210px;
+   transform: translateX(-210px);
+   display: flex;
+   transition: .3s;
+   justify-content: space-between;
+   align-items: start;
+   height: 32px;
+}
+
+.textFormatBtnGroupActive {
+   transform: translateX(40px);
+}
+
+.formatBtnGroupWin {
+   right: -295px;
+   position: absolute;
+   overflow: hidden;
+   display: flex;
+   width: 290px;
 }
 
 .input {
@@ -73,4 +97,27 @@
    margin-top: 20px;
    width: 200px;
    justify-content: space-between;
+}
+
+.fontSizeBtn:hover .popapBtn {
+   display: flex;
+}
+
+.fontSizeBtnPopap {
+   display: flex;
+   box-sizing: border-box;
+   position: absolute;
+   top: 0px;
+   left: 31px;
+   background-color: #2e2f35;
+   border: 1px solid #000000;
+   border-radius: 3px;
+}
+
+.popapBtn {
+   display: none;
+   width: 30px;
+   height: 30px;
+   color: #b1b1b1;
+   font-weight: 600;
 }

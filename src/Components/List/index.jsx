@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 
 import { MyContext } from '../../App'
 import { useLocalStorage } from '../../hooks/useLocalStorage'
@@ -17,7 +17,7 @@ const List = ({className}) => {
 
    return (
       <div 
-         className={[style.list, className].join(' ')} 
+         className={`${style.list} ${className}`} 
          onClick={() => setSelectedItem(0)}
       >
          <div className={style.date}>Сегодня</div>

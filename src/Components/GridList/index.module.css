@@ -15,6 +15,8 @@
    cursor: pointer;
    margin: 20px;
    height: fit-content;
+   width: 200px;
+   overflow: hidden;
 }
 
 .win {
@@ -26,6 +28,7 @@
    border: 1px solid #b1b1b1;
    padding: 10px;
    transition: .3s;
+   overflow: hidden;
 }
 
 .winActive {
@@ -53,6 +56,7 @@
    margin: 0;
    font-size: 16px;
    color: #b1b1b1;
+   display: flex;
 }
 
 .date {

@@ -1,9 +1,7 @@
-import { FormatListBulleted, GridView, ArrowBackIosNew, Delete, ModeEdit, TextFormat } from '@mui/icons-material'
+import { FormatListBulleted, GridView, ArrowBackIosNew, Delete, ModeEdit, TextFormat, FormatBold, FormatItalic, FormatListNumbered, FormatSize } from '@mui/icons-material'
 import { useContext, useEffect, useState } from 'react'
-import Modal from '@mui/material/Modal';
-import Box from '@mui/material/Box';
+import { Modal, Box } from '@mui/material';
 import Btn from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
 
 import { MyContext } from '../../App'
 import { useLocalStorage } from '../../hooks/useLocalStorage'
@@ -16,9 +14,17 @@ const Header = ({className}) => {
    const {type, setType, setTriggerGetLocalStorage, triggerGetLocalStorage, setSelectedItem, selectedItem} = useContext(MyContext)
    const [response, _, set, del] = useLocalStorage()
    const [modalVisible, setModalVisible] = useState(false)
+   const [activeFormatTextBtn, setActiveFormatTextBtn] = useState(false)
+
+   useEffect(() => {
+      if(selectedItem === 0 || type === 1){
+         setActiveFormatTextBtn(false)
+      }
+   },[selectedItem, type])
 
    const obj = {
       text: '',
+      innerHTML: '',
       sortDate: new Date(),
       date: new Intl.DateTimeFormat("ru", {
                day: "numeric", 
@@ -90,12 +96,71 @@ const Header = ({className}) => {
                >
                   <ModeEdit fontSize='small' className={style.btnIcon}/>
                </Button>
-               <Button>
+               <Button 
+                  className={activeFormatTextBtn ? [style.textFormatBtn, style.activeButtonType].join(' ') : style.textFormatBtn} 
+                  disabled={selectedItem === 0 || type === 1}
+                  onClick={() => setActiveFormatTextBtn(!activeFormatTextBtn)}
+               >
                   <TextFormat 
                      fontSize='medium' 
                      className={style.btnIcon}
                   />
                </Button>
+               <div className={style.formatBtnGroupWin}>
+                  <div className={`${style.textFormatBtnGroup} ${activeFormatTextBtn && style.textFormatBtnGroupActive}`}>
+                     <div className={style.fontSizeBtn}>
+                        <Button>
+                           <FormatSize 
+                              fontSize='medium' 
+                              className={style.btnIcon}
+                           />
+                        </Button>
+                        <div className={style.fontSizeBtnPopap}>
+                           <Button className={style.popapBtn} onClick={() => document.execCommand('fontSize', false, '1')}>1</Button>
+                           <Button className={style.popapBtn} onClick={() => document.execCommand('fontSize', false, '2')}>2</Button>
+                           <Button className={style.popapBtn} onClick={() => document.execCommand('fontSize', false, '3')}>3</Button>
+                           <Button className={style.popapBtn} onClick={() => document.execCommand('fontSize', false, '4')}>4</Button>
+                           <Button className={style.popapBtn} onClick={() => document.execCommand('fontSize', false, '5')}>5</Button>
+                           <Button className={style.popapBtn} onClick={() => document.execCommand('fontSize', false, '6')}>6</Button>
+                           <Button className={style.popapBtn} onClick={() => document.execCommand('fontSize', false, '7')}>7</Button>
+                        </div>
+                     </div>
+                     <div style={{display:'flex'}}>
+                        <Button onClick={() => document.execCommand('bold')}>
+                           <FormatBold 
+                              fontSize='medium' 
+                              className={style.btnIcon}
+                           />
+                        </Button>
+                        <Button onClick={() => document.execCommand('italic')}>
+                           <FormatItalic 
+                              fontSize='medium' 
+                              className={style.btnIcon}
+                           />
+                        </Button>
+                        <Button onClick={() => document.execCommand('underline')}>
+                           <TextFormat 
+                              fontSize='medium' 
+                              className={style.btnIcon}
+                           />
+                        </Button>
+                     </div>
+                     <div style={{display:'flex'}}>
+                        <Button onClick={() => document.execCommand('insertOrderedList')}>
+                           <FormatListNumbered 
+                              fontSize='medium' 
+                              className={style.btnIcon}
+                           />
+                        </Button>
+                        <Button onClick={() => document.execCommand('insertUnorderedList')}>
+                           <FormatListBulleted 
+                              fontSize='medium' 
+                              className={style.btnIcon}
+                           />
+                        </Button>
+                     </div>
+                  </div>
+               </div>
             </div>
             <Search 
                disabled={type === 2 || localStorage.length === 0} 
@@ -115,7 +180,7 @@ const Header = ({className}) => {
                   <div className={style.modalBtnGroup}>
                      <Btn 
                         variant="outlined" 
-                        startIcon={<DeleteIcon />} 
+                        startIcon={<Delete/>} 
                         color="error" 
                         onClick={deleteNotes}
                      >
