@@ -1,13 +1,7 @@
-import { FormatListBulleted, GridView, ArrowBackIosNew, Delete, ModeEdit, TextFormat } from '@mui/icons-material'
+import { FormatListBulleted, GridView, ArrowBackIosNew, Delete, ModeEdit, TextFormat, FormatBold, FormatItalic, FormatListNumbered, FormatSize } from '@mui/icons-material'
 import { useContext, useEffect, useState } from 'react'
-import Modal from '@mui/material/Modal';
-import Box from '@mui/material/Box';
+import { Modal, Box } from '@mui/material';
 import Btn from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
-import FormatBoldIcon from '@mui/icons-material/FormatBold';
-import FormatItalicIcon from '@mui/icons-material/FormatItalic';
-import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
-import FormatSizeIcon from '@mui/icons-material/FormatSize';
 
 import { MyContext } from '../../App'
 import { useLocalStorage } from '../../hooks/useLocalStorage'
@@ -114,11 +108,13 @@ const Header = ({className}) => {
                </Button>
                <div className={style.formatBtnGroupWin}>
                   <div className={`${style.textFormatBtnGroup} ${activeFormatTextBtn && style.textFormatBtnGroupActive}`}>
-                     <Button className={style.fontSizeBtn}>
-                        <FormatSizeIcon 
-                           fontSize='medium' 
-                           className={style.btnIcon}
-                        />
+                     <div className={style.fontSizeBtn}>
+                        <Button>
+                           <FormatSize 
+                              fontSize='medium' 
+                              className={style.btnIcon}
+                           />
+                        </Button>
                         <div className={style.fontSizeBtnPopap}>
                            <Button className={style.popapBtn} onClick={() => document.execCommand('fontSize', false, '1')}>1</Button>
                            <Button className={style.popapBtn} onClick={() => document.execCommand('fontSize', false, '2')}>2</Button>
@@ -128,16 +124,16 @@ const Header = ({className}) => {
                            <Button className={style.popapBtn} onClick={() => document.execCommand('fontSize', false, '6')}>6</Button>
                            <Button className={style.popapBtn} onClick={() => document.execCommand('fontSize', false, '7')}>7</Button>
                         </div>
-                     </Button>
+                     </div>
                      <div style={{display:'flex'}}>
                         <Button onClick={() => document.execCommand('bold')}>
-                           <FormatBoldIcon 
+                           <FormatBold 
                               fontSize='medium' 
                               className={style.btnIcon}
                            />
                         </Button>
                         <Button onClick={() => document.execCommand('italic')}>
-                           <FormatItalicIcon 
+                           <FormatItalic 
                               fontSize='medium' 
                               className={style.btnIcon}
                            />
@@ -151,7 +147,7 @@ const Header = ({className}) => {
                      </div>
                      <div style={{display:'flex'}}>
                         <Button onClick={() => document.execCommand('insertOrderedList')}>
-                           <FormatListNumberedIcon 
+                           <FormatListNumbered 
                               fontSize='medium' 
                               className={style.btnIcon}
                            />
@@ -184,7 +180,7 @@ const Header = ({className}) => {
                   <div className={style.modalBtnGroup}>
                      <Btn 
                         variant="outlined" 
-                        startIcon={<DeleteIcon />} 
+                        startIcon={<Delete/>} 
                         color="error" 
                         onClick={deleteNotes}
                      >

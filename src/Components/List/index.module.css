@@ -1,11 +1,12 @@
 .list {
    display: none;
    flex-direction: column;
-   width: 25.2%;
+   min-width: 25.2%;
    height: 100%;
    background-color: #2e2f35;
    overflow: auto;
    scroll-behavior: inherit;
+   position: relative;
 }
 
 .date {
@@ -41,7 +42,7 @@
 .itemTitle {
    margin: 0 0 0 30px;
    font-size: 15px;
-   width: 192px;
+   max-width: 192px;
    overflow: hidden;
 }
 
@@ -52,7 +53,7 @@
 .itemText {
    display: flex;
    font-size: 11px;
-   width: 190px;
+   max-width: 190px;
    height: 13px;
    overflow: hidden;
    margin-left: 30px;

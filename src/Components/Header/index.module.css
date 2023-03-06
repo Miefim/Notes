@@ -44,6 +44,7 @@
 }
 
 .textFormatBtnGroup {
+   position: relative;
    width: 210px;
    transform: translateX(-210px);
    display: flex;
@@ -96,10 +97,6 @@
    margin-top: 20px;
    width: 200px;
    justify-content: space-between;
-}
-
-.fontSizeBtn {
-   position: relative;
 }
 
 .fontSizeBtn:hover .popapBtn {

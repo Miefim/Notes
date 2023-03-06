@@ -45,15 +45,6 @@ const Textarea = ({className}) => {
             dangerouslySetInnerHTML={{__html: selectedItem.innerHTML}}
          >
          </div>
-         {/* <textarea className={style.textarea} 
-            name="" 
-            id="" 
-            cols="30" 
-            rows="10"
-            disabled={!selectedItem}
-            value={value}
-            onChange={e => setValue(e.target.value)}
-         /> */}
       </div>
       
    )

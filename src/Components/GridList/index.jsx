@@ -31,6 +31,8 @@ const GridList = ({className}) => {
                      key={item.id}
                      onClick={setSelectedItemObj}
                      onDoubleClick={() => setType(2)}
+                     onTouchStart={setSelectedItemObj}
+                     onTouchEnd={() => setType(2)}
                   >
                      <div className={selectedItem.id === item.id ? [style.win, style.winActive].join(' ') : style.win}>
                         <h2 className={style.winTitle}>{item.text.split(' ')[0] ? item.text.split(' ')[0] : "Без названия"}</h2>
